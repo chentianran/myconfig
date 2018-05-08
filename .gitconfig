@@ -1,1 +1,33 @@
-dotfiles/gitconfig
+[user]
+    name = Tianran Chen
+    email = tianran.chen@gmail.com
+
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+
+[branch]
+    autosetupmerge = true
+
+[push]
+    default = matching
+
+[difftool.latex]
+    cmd = git-latexdiff "$LOCAL" "$REMOTE"
+
+[difftool]
+    prompt = false
+
+[alias]
+    ldiff = difftool -t latex
+    co = checkout
+    st = status
+    br = branch
+
+[core]
+	whitespace = cr-at-eol
+    editor = vim
+
+[merge]
+	tool = meld
