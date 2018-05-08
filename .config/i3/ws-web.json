@@ -1,0 +1,36 @@
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.20,
+    "type": "con",
+    "nodes": [
+        {
+	    "name": "qutebrower",
+	    "percent": 0.50,
+	    "swallows": [ { "class": "^qutebrowser$" } ],
+	    "type": "con"
+        },
+        {
+	    "name": "qutebrower",
+	    "percent": 0.50,
+	    "swallows": [ { "class": "^qutebrowser$" } ],
+	    "type": "con"
+        }
+    ]
+}
+
+{
+    "name": "Firefox",
+    "percent": 0.40,
+    "swallows": [ { "class": "^Firefox$" } ],
+    "type": "con"
+}
+
+{
+    "name": "Firefox",
+    "percent": 0.40,
+    "swallows": [ { "class": "^Firefox$" } ],
+    "type": "con"
+}
+

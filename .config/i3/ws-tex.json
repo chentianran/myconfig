@@ -1,0 +1,37 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.25,
+    "type": "con",
+    "nodes": [
+        {
+            "name": "Firefox",
+            "percent": 0.75,
+            "swallows": [ { "class": "^Firefox$" } ],
+            "type": "con"
+        },
+        {
+            "name": "Terminal",
+            "percent": 0.25,
+            "swallows": [ { "class": "^Termite$" } ],
+            "type": "con"
+        }
+    ]
+}
+
+{
+    "name": "Atom",
+    "percent": 0.35,
+    "swallows": [ { "class": "^Atom$" } ],
+    "type": "con"
+}
+
+{
+    "name": "Viewer",
+    "percent": 0.40,
+    "swallows": [ { "class": "^Zathura$" } ],
+    "type": "con"
+}
+

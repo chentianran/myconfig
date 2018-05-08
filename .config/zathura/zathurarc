@@ -1,0 +1,22 @@
+set selection-clipboard clipboard
+set smooth-scroll true
+set synctex true
+set synctex-editor-command "atom %{input}:%{line}"
+set highlight-transparency 0.1
+set highlight-color "#AA0088"
+set highlight-active-color "#CC00CC"
+
+unmap =
+map = zoom in
+
+unmap -
+map - zoom out
+
+map 0 zoom best-fit
+
+map j navigate next
+map k navigate previous
+
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
