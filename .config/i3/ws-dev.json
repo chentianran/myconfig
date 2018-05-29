@@ -7,15 +7,15 @@
     "type": "con",
     "nodes": [
         {
-            "name": "Firefox",
+            "name": "Chromium-browser",
             "percent": 0.75,
-            "swallows": [ { "class": "^Firefox$" } ],
+            "swallows": [ { "class": "^Chromium-browser$" } ],
             "type": "con"
         },
         {
             "name": "Terminal",
             "percent": 0.25,
-            "swallows": [ { "class": "^Termite$" } ],
+            "swallows": [ { "class": "^Gnome-terminal$" } ],
             "type": "con"
         }
     ]
