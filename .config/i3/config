@@ -109,7 +109,7 @@ client.urgent           #ff9800 #ff9800 #000000 #e53935
 
 exec --no-startup-id unity-settings-daemon
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper
-exec --no-startup-id compton -b
+#exec --no-startup-id compton -b
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 

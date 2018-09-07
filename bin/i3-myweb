@@ -2,7 +2,8 @@
 
 i3-msg 'workspace 1; append_layout ~/.config/i3/ws-web.json'
 
-firefox &
-firefox -new-window &
-qutebrowser https://calendar.google.com &
-qutebrowser &
+chromium-browser &
+chromium-browser &
+chromium-browser --app=https://calendar.google.com &
+chromium-browser --app=https://en.todoist.com &
+

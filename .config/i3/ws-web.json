@@ -6,15 +6,15 @@
     "type": "con",
     "nodes": [
         {
-	    "name": "qutebrower",
+	    "name": "Calendar",
 	    "percent": 0.50,
-	    "swallows": [ { "class": "^qutebrowser$" } ],
+	    "swallows": [ { "instance": "^calendar" } ],
 	    "type": "con"
         },
         {
-	    "name": "qutebrower",
+	    "name": "Todo",
 	    "percent": 0.50,
-	    "swallows": [ { "class": "^qutebrowser$" } ],
+	    "swallows": [ { "instance": "^en.todo" } ],
 	    "type": "con"
         }
     ]
@@ -23,14 +23,14 @@
 {
     "name": "Chromium-browser",
     "percent": 0.40,
-    "swallows": [ { "class": "^Chromium-browser$" } ],
+    "swallows": [ { "instance": "^chromium-browser$" } ],
     "type": "con"
 }
 
 {
     "name": "Chromium-browser",
     "percent": 0.40,
-    "swallows": [ { "class": "^Chromium-browser$" } ],
+    "swallows": [ { "instance": "^chromium-browser$" } ],
     "type": "con"
 }
 

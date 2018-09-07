@@ -22,9 +22,9 @@
 }
 
 {
-    "name": "Atom",
+    "name": "Code",
     "percent": 0.70,
-    "swallows": [ { "class": "^Atom$" } ],
+    "swallows": [ { "class": "^Code$" } ],
     "type": "con"
 }
 

@@ -15,7 +15,7 @@
         {
             "name": "Terminal",
             "percent": 0.25,
-            "swallows": [ { "class": "^Gnome-termite$" } ],
+            "swallows": [ { "class": "^Gnome-terminal$" } ],
             "type": "con"
         }
     ]
