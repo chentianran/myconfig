@@ -1,36 +1,25 @@
 {
-    "border": "normal",
-    "floating": "auto_off",
-    "layout": "splitv",
+    "name": "chrome",
     "percent": 0.20,
-    "type": "con",
-    "nodes": [
-        {
-	    "name": "qutebrower",
-	    "percent": 0.50,
-	    "swallows": [ { "class": "^qutebrowser$" } ],
-	    "type": "con"
-        },
-        {
-	    "name": "qutebrower",
-	    "percent": 0.50,
-	    "swallows": [ { "class": "^qutebrowser$" } ],
-	    "type": "con"
-        }
-    ]
-}
-
-{
-    "name": "Firefox",
-    "percent": 0.40,
-    "swallows": [ { "class": "^Firefox$" } ],
+    "swallows": [ 
+        { 
+            "class": "^Google-chrome$",
+            "instance": "^calendar"
+        } 
+    ],
     "type": "con"
 }
 
 {
-    "name": "Firefox",
-    "percent": 0.40,
-    "swallows": [ { "class": "^Firefox$" } ],
+    "name": "chrome",
+    "percent": 0.80,
+    "swallows": [ 
+        { 
+            "class": "^Google-chrome$",
+            "instance": "^google-chrome$"
+        } 
+    ],
     "type": "con"
 }
+
 

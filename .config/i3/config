@@ -1,19 +1,20 @@
 set $mod Mod4
 
-font pango:Ubuntu 14
+font pango:Ubuntu 12
 
-gaps inner 24
-gaps outer 0
+# gaps inner 24
+# gaps outer 0
 for_window [class="^.*"] border pixel 6
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Laucher
-bindsym $mod+Return    exec termite
-bindsym $mod+backslash exec firefox
-bindsym $mod+BackSpace exec atom
+bindsym $mod+Return    exec i3-sensible-terminal
+bindsym $mod+backslash exec google-chrome
+bindsym $mod+BackSpace exec code
 bindsym $mod+d         exec rofi -show run
+bindsym $mod+t         exec i3-sensible-terminal -- -e ranger
 
 bindsym $mod+q kill
 
@@ -72,67 +73,94 @@ bindsym $mod+minus        resize shrink width  5 px or 5 ppt
 bindsym $mod+bracketright resize grow   height 5 px or 5 ppt
 bindsym $mod+bracketleft  resize shrink height 5 px or 5 ppt
 
+### manage i3 ###
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exit
+set $mode_exit "Exit-Reboot-Shutdown"
+mode $mode_exit {
+    bindsym e exit
+    bindsym r exec systemctl reboot
+    bindsym s exec systemctl poweroff
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode $mode_exit
 
-# resize window (you can also use the mouse for that)
-# mode "resize" {
-#         # These bindings trigger as soon as you enter the resize mode
-#
-#         # Pressing left will shrink the window’s width.
-#         # Pressing right will grow the window’s width.
-#         # Pressing up will shrink the window’s height.
-#         # Pressing down will grow the window’s height.
-#         bindsym h resize shrink width 10 px or 10 ppt
-#         bindsym j resize grow height 10 px or 10 ppt
-#         bindsym k resize shrink height 10 px or 10 ppt
-#         bindsym l resize grow width 10 px or 10 ppt
-#
-#         # back to normal: Enter or Escape
-#         bindsym Return mode "default"
-#         bindsym Escape mode "default"
-# }
-#
-# bindsym $mod+r mode "resize"
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+### Screen management ###
+set $mode_screen "Project: [D]uplicate [I]nternal [E]xternal [L]eft [R]ight"
+set $internal eDP-1
+set $external DP-1
+mode Internal-External {
+    bindsym i exec --no-startup-id xrandr --output "$internal" --auto --output "$external" --off; mode "default"
+    bindsym e exec --no-startup-id xrandr --output "$external" --mode 3840x2160 --dpi 128 --output "$internal" --off; mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+p mode Internal-External
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#    status_command i3status
-#    tray_output primary
-#    font pango:Ubuntu Mono 12
-#    #status_command i3blocks -c ~/.i3/i3blocks.conf
-#    colors {
-#        separator   #77216F
-#        background  #2C001E
-#        statusline  #839496
-#        focused_workspace #fdfdfd #77216F #fdfdfd
-#        active_workspace #fdfdfd #77216F #fdfdfd
-#        inactive_workspace #555555 #333333 #555555
-#        urgent_workspace #d33682 #d33682 #fdf6e3
-#    }
-#}
+bar {
+    # status_command i3status
+    tray_output primary
+    font pango:Ubuntu Mono 11
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    colors {
+        separator   #eee8d5
+        background  #073642
+        statusline  #839496
+        focused_workspace #fdfdfd #77216F #fdfdfd
+        active_workspace #fdfdfd #77216F #fdfdfd
+        inactive_workspace #555555 #333333 #555555
+        urgent_workspace #d33682 #d33682 #fdf6e3
+    }
+}
 
 # Windows decoration colors
 # class                 border  backgr. text    indicator
-client.focused          #aa0088 #880088 #ffffff #c90033
-client.focused_inactive #400040 #300A30 #999999 #484e50
+client.focused          #586e75 #073642 #fdf6e3 #cb4b16
+client.focused_inactive #400040 #eee8d5 #073642 #484e50
 client.unfocused        #666666 #808080 #999999 #000000
 client.urgent           #ff9800 #ff9800 #000000 #e53935
 
-exec --no-startup-id xrandr --output DP1 --mode 3840x2160 --rate 60 --dpi 144
-exec --no-startup-id xrandr --dpi 144/DP1
+# default_border pixel 5
+# hide_edge_borders both
+focus_follows_mouse no
+
+# exec --no-startup-id xrandr --output DP1 --mode 3840x2160 --rate 60 --dpi 144
+# exec --no-startup-id xrandr --dpi 144/DP1
 #exec --no-startup-id xrandr --output HDMI1 --mode 3840x2160 --rate 30 --dpi 144
 #exec --no-startup-id xrandr --dpi 144/HDMI1
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper
 exec --no-startup-id compton -b
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# exec_always export GDK_SCALE=2
+#exec_always xrandr --dpi 144/eDP-1
+
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-keyboard
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-mouse
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-media-keys
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-sound
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-backlight-helper
+
+exec --no-startup-id xinput set-prop "SYNA1D31:00 06CB:CD48 Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "SYNA1D31:00 06CB:CD48 Touchpad" 301 1.0
 
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec --no-startup-id dropbox
+exec --no-startup-id dropbox start
+exec --no-startup-id synology-drive
 
 exec --no-startup-id xset s off -dpms
+exec --no-startup-id xmodmap ~/.xmodmap
+exec --no-startup-id xcape -e 'Control_L=Escape'
+
 

@@ -63,6 +63,7 @@ ZSH_THEME="af-magic"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  npm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,4 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias myconfig='git --git-dir=$HOME/.myconfig/ --work-tree=$HOME'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 

@@ -8,14 +8,15 @@ rofi.dpi:                            144
 rofi.color-enabled: true
 
 !                  bg       border   separator
-rofi.color-window: #280028, #cda000, #dfdfdf
+! rofi.color-window: #280028, #cda000, #dfdfdf
 
 !                  bg       fg       bg-alt   hl-bg    hl-fg
-rofi.color-normal: #400040, #dfdfdf, #480048, #cda000, #320032
-rofi.color-active: #d79921, #32302f, #d79921, #fabd2f, #32302f
-rofi.color-urgent: #cc241d, #32302f, #cc241d, #fb4934, #32302f
+! rofi.color-normal: #400040, #dfdfdf, #480048, #cda000, #320032
+! rofi.color-active: #d79921, #32302f, #d79921, #fabd2f, #32302f
+! rofi.color-urgent: #cc241d, #32302f, #cc241d, #fb4934, #32302f
 
-! rofi.theme:                          
+rofi.theme: solarized_alternate
+
 ! "Color scheme for normal row" Set from: Default
 ! "Color scheme for urgent row" Set from: Default
 ! rofi.color-urgent:                   
