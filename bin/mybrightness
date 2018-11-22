@@ -1,0 +1,7 @@
+#!/bin/sh
+
+CUR=`sudo /usr/lib/gnome-settings-daemon/gsd-backlight-helper --get-brightness`
+NEW=`echo $CUR $1 | bc`
+sudo /usr/lib/gnome-settings-daemon/gsd-backlight-helper --set-brightness $NEW
+
+

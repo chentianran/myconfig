@@ -87,8 +87,8 @@ mode $mode_exit {
 bindsym $mod+Shift+e mode $mode_exit
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp   exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp   exec --no-startup-id ~/bin/mybrightness +200
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/mybrightness -200
 
 ### Screen management ###
 set $mode_screen "Project: [D]uplicate [I]nternal [E]xternal [L]eft [R]ight"
@@ -158,6 +158,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id dropbox start
 exec --no-startup-id synology-drive
+exec --no-startup-id redshift-gtk
+exec --no-startup-id udiskie --tray
 
 exec --no-startup-id xset s off -dpms
 exec --no-startup-id xmodmap ~/.xmodmap
