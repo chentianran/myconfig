@@ -1,7 +1,4 @@
 set selection-clipboard clipboard
-set smooth-scroll true
-set synctex true
-set synctex-editor-command "atom %{input}:%{line}"
 set highlight-transparency 0.1
 set highlight-color "#AA0088"
 set highlight-active-color "#CC00CC"
