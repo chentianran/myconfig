@@ -1,0 +1,6 @@
+#!/bin/sh
+
+xset r rate 200 50
+xmodmap $HOME/.xmodmap
+xcape -e 'Control_L=Escape'
+
