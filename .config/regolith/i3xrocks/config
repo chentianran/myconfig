@@ -39,7 +39,7 @@ label_color=xresource:i3xrocks.label.color
 # Displays the wifi network's name
 # If the auto-discovered wifi device is incorrect,
 # override the "instance" value with the desired device
-[wifi2]
+[wifi]
 #instance=wlp3s0 Replace with your wifi device if you need
 interval=5
 
@@ -53,10 +53,16 @@ interval=5
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-[cpu_usage]
+[cpu-usage]
 interval=3
 min_width=100%
 #separator=false
+
+# temp
+#
+# Displays temp data
+[temp]
+interval=30
 
 [memory]
 interval=7
@@ -72,14 +78,26 @@ min_width=12.3G
 # To display est. time remaining, uncomment "display_time_left".
 #
 # To display the battery icon only, uncomment "icon_only".
-[battery2]
+[battery]
 interval=30
 #display_time_left=true
 percent_color=true
 #icon_only=true
+
+# volume
+#
+# Display Volume
+[volume]
+interval=5
 
 # Date Time
 #
 [time]
 interval=30
 
+# Rofication
+#
+# Displays notifications.
+[rofication]
+command=rofication-status
+interval=10

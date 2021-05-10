@@ -10,10 +10,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'airblade/vim-gitgutter'
 Plug 'vhdirk/vim-cmake'
 Plug 'majutsushi/tagbar'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 syntax enable
-colorscheme solarized
+colorscheme nord
 
 set expandtab
 set shiftwidth=4
