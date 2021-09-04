@@ -17,3 +17,7 @@ map k navigate previous
 unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
+
+set recolor-darkcolor "#ECEFF4"
+set recolor-lightcolor "#2E3440"
+
