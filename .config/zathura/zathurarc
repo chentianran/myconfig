@@ -3,6 +3,8 @@ set highlight-transparency 0.1
 set highlight-color "#AA0088"
 set highlight-active-color "#CC00CC"
 
+set synctex true
+
 unmap =
 map = zoom in
 
@@ -17,6 +19,8 @@ map k navigate previous
 unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
+
+map t set recolor true
 
 set recolor-darkcolor "#ECEFF4"
 set recolor-lightcolor "#2E3440"

@@ -31,3 +31,5 @@
 
 [merge]
 	tool = meld
+[status]
+	submoduleSummary = true
