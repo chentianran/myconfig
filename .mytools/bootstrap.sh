@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 ### Base packages #############################################################
 sudo apt update && sudo apt install \
     aptitude \
     autoconf \
     automake \
+    ca-certificates \
     clang \
     cmake \
     cmus \
@@ -18,6 +19,7 @@ sudo apt update && sudo apt install \
     gfortran \
     git \
     git-flow \
+    gnupg \
     graphicsmagick \
     graphviz \
     htop \
@@ -30,6 +32,7 @@ sudo apt update && sudo apt install \
     libmpfr-dev \
     libtbb-dev \
     lm-sensors \
+    lsb-release \
     nvme-cli \
     octave \
     octave-general \
@@ -47,10 +50,12 @@ sudo apt update && sudo apt install \
     texlive-xetex \
     valgrind \
     vim
+read -p "Press enter to continue"
 
 ### VirtualBox ###
 if whiptail --yesno "Install VirtualBox?" 20 60 ;then
     sudo apt install virtualbox virtualbox-ext-pack
+    read -p "Press enter to continue"
 fi
 
 ### GUI packages #############################################################
@@ -66,6 +71,7 @@ if whiptail --yesno "Install GUI packages?" 20 60 ;then
         xcape \
         xclip \
         zathura
+    read -p "Press enter to continue"
 fi
 
 ### Fonts #############################################################
@@ -74,10 +80,12 @@ fi
 if whiptail --yesno "Install fonts?" 20 60 ;then
     sudo apt install fonts-firacode 
     sudo apt install fonts-noto-cjk-extra 
+    read -p "Press enter to continue"
 fi
 
 if whiptail --yesno "Install Powerline fonts?" 20 60 ;then
     sudo apt install fonts-powerline
+    read -p "Press enter to continue"
 fi
 
 if whiptail --yesno "Install Nerd Fonts???" 20 60 ;then
@@ -85,12 +93,22 @@ if whiptail --yesno "Install Nerd Fonts???" 20 60 ;then
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
     unzip Hack.zip -d ~/.fonts
     fc-cache -fv
+    read -p "Press enter to continue"
 fi
 
 ### Regolith desktop #############################################################
-if whiptail --yesno "Regolith desktop?" 20 60 ;then
+if whiptail --yesno "Install Regolith desktop?" 20 60 ;then
     sudo add-apt-repository ppa:regolith-linux/release
     sudo apt install regolith-desktop-complete
+    read -p "Press enter to continue"
+fi
+
+### Github CLI ################################################################
+if whiptail --yesno "Install Github CLI?" 20 60 ;then
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    sudo apt update
+    sudo apt install gh
 fi
 
 ### Shell #############################################################
@@ -99,13 +117,15 @@ if whiptail --yesno "Install Fish?" 20 60 ;then
     sudo apt install fish
     chsh -s /usr/bin/fish
     echo "[ Fisher ]"
-    curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+    fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+    read -p "Press enter to continue"
 fi
 
 ### Starship prompt ###########################################################
 if whiptail --yesno "Install Starship prompt?" 20 60 ;then
     echo "[ Starship prompt ]"
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+    read -p "Press enter to continue"
 fi
 
 ### Node.js #############################################################
@@ -115,10 +135,15 @@ fi
 
 if whiptail --yesno "Install NVM?" 20 60 ;then
     echo "[ NVM ]"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh" | bash
+    read -p "Press enter to continue"
 fi
 
 ### Jupyter #############################################################
+if whiptail --yesno "Install JupyterLab?" 20 60 ;then
+    pip install --user jupyterlab
+    read -p "Press enter to continue"
+fi
 
 ### CUDA #############################################################
 if whiptail --yesno "Install CUDA?" 20 60 ;then
@@ -128,12 +153,21 @@ if whiptail --yesno "Install CUDA?" 20 60 ;then
     sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
     sudo apt-get update
     sudo apt-get -y install cuda
-    break;;
+    read -p "Press enter to continue"
 fi
 
 ### Docker/Podman ###
-if whiptail --yesno "Install Podman?" 20 60 ;then
-    sudo apt-get -y install podman
+if whiptail --yesno "Install Docker?" 20 60 ;then
+    # sudo apt-get -y install podman
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    read -p "Press enter to continue"
 fi
 
 ### VS Code #############################################################
@@ -145,6 +179,7 @@ if whiptail --yesno "Install vscode?" 20 60 ;then
     sudo apt install apt-transport-https
     sudo apt update
     sudo apt install code # or code-insiders
+    read -p "Press enter to continue"
 fi
 
 ### Brave browser ###
@@ -153,12 +188,15 @@ if whiptail --yesno "Install Brave browser?" 20 60 ;then
     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
     sudo apt update
     sudo apt install brave-browser
+    read -p "Press enter to continue"
 fi
 
 ### Setup my config tools ###
-echo ".myconfig" >> .gitignore
-git clone --bare https://github.com/chentianran/myconfig.git $HOME/.myconfig
-alias myconfig='/usr/bin/git --git-dir=$HOME/.myconfig/ --work-tree=$HOME'
-myconfig checkout
-myconfig config --local status.showUntrackedFiles no
+if whiptail --yesno "Set up myconfig?" 20 60 ;then
+    git clone --bare https://github.com/chentianran/myconfig.git $HOME/.myconfig
+    alias myconfig='/usr/bin/git --git-dir=$HOME/.myconfig/ --work-tree=$HOME'
+    myconfig checkout
+    myconfig config --local status.showUntrackedFiles no
+    read -p "Press enter to continue"
+fi
 
