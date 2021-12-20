@@ -52,6 +52,13 @@ sudo apt update && sudo apt install \
     vim
 read -p "Press enter to continue"
 
+### Vim-plug ##################################################################
+if whiptail --yesno "Install VIM-plug?" 20 60 ;then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    read -p "Press enter to continue"
+fi
+
 ### VirtualBox ###
 if whiptail --yesno "Install VirtualBox?" 20 60 ;then
     sudo apt install virtualbox virtualbox-ext-pack
